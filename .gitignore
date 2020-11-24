@@ -24,9 +24,13 @@ hs_err_pid*
 *.idea/
 LICENSE
 <<<<<<< 2d7e64e11211ef4508fbc96bf520e4440b184378
+<<<<<<< 2d7e64e11211ef4508fbc96bf520e4440b184378
 =======
 target/
 */target
 >>>>>>> add payment and order service to eureka
+=======
+target/
+>>>>>>> update gitignore file
 
 
