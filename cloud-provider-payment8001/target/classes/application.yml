@@ -2,6 +2,7 @@
 server:
   port: 8001
 
+
 spring:
   datasource:
     #当前数据源操作类型
@@ -11,9 +12,18 @@ spring:
     url: jdbc:mysql://101.133.164.37:3306/cloud2020?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
+  application:
+    name: cloud-payment-service
+
 
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   #所有entity别名类所在包
   type-aliases-package: com.atguigu.springcloud.entities
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka
