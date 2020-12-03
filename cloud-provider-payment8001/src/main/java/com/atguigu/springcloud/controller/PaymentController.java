@@ -1,13 +1,15 @@
 package com.atguigu.springcloud.controller;
 
-import com.atguigu.springcloud.service.PaymentService;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
+import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author: Andy
@@ -22,6 +24,9 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @PostMapping("/payment/create")
     public CommonResult<Payment> create(@RequestBody Payment payment) {
@@ -42,6 +47,12 @@ public class PaymentController {
             return CommonResult.successCommonResult("查询成功，serverPort:"+serverPort, result);
         }
         return CommonResult.errorCommonResult("没有对应记录，查询id:"+id, result);
+    }
+
+    @GetMapping("/payment/discovery")
+    public Object discovery() {
+        List<String> services = discoveryClient.getServices();
+        return services;
     }
 
 
